@@ -1,0 +1,5 @@
+/test
+.editorconfig
+.gitignore
+.eslintrc.js
+.travis.yml
