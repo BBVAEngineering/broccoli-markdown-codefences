@@ -147,6 +147,31 @@ describe('broccoli-markdown-test', () => {
 
 			expect(Object.keys(result)).to.deep.equal(['a.codefences-test.js']);
 		});
+
+		it('generates custom tests', async () => {
+			const testGenerator = (relativePath, asserts) => {
+				expect(relativePath).to.be.equal('a.md');
+				expect(asserts).to.deep.contain('foo');
+
+				return 'bar';
+			};
+
+			input.write({
+				'a.md': [
+					'```javascript',
+					'foo',
+					'```'
+				].join('\n')
+			});
+
+			output = createBuilder(Markdown(input.path(), { testGenerator }));
+
+			await output.build();
+
+			const result = output.read();
+
+			expect(result['a.codefences-test.js'].trim()).to.equal('bar');
+		});
 	});
 
 	describe('code transforms', () => {
@@ -183,6 +208,77 @@ describe('broccoli-markdown-test', () => {
 			].join('\n'));
 		});
 	});
+
+	describe('cache', () => {
+		it('caches test generator', async () => {
+			const testGenerator1 = () => 'foo';
+			const testGenerator2 = () => 'bar';
+
+			input.write({
+				'a.md': [
+					'```javascript',
+					'foo',
+					'```'
+				].join('\n')
+			});
+
+			output = createBuilder(Markdown(input.path(), { testGenerator: testGenerator1 }));
+
+			await output.build();
+
+			let result = output.read();
+
+			expect(result['a.codefences-test.js'].trim()).to.equal('foo');
+
+			output = createBuilder(Markdown(input.path(), { testGenerator: testGenerator2 }));
+
+			await output.build();
+
+			result = output.read();
+
+			expect(result['a.codefences-test.js'].trim()).to.equal('bar');
+		});
+
+		it('caches code transform', async () => {
+			const codeTransforms1 = { custom: () => 'foo' };
+			const codeTransforms2 = { custom: () => 'bar' };
+
+			input.write({
+				'a.md': [
+					'```custom',
+					'foo',
+					'```'
+				].join('\n')
+			});
+
+			output = createBuilder(Markdown(input.path(), { testGenerator: 'qunit', codeTransforms: codeTransforms1 }));
+
+			await output.build();
+
+			let result = output.read();
+
+			expect(result['a.codefences-test.js'].trim()).to.equal([
+				'QUnit.module(\'Markdown Codefences | a.md\');',
+				'QUnit.test(\'fenced code should work\', function(assert) {',
+				'	assert.expect(0);',
+				'	foo',
+				'});'
+			].join('\n'));
+
+			output = createBuilder(Markdown(input.path(), { testGenerator: 'qunit', codeTransforms: codeTransforms2 }));
+
+			await output.build();
+
+			result = output.read();
+
+			expect(result['a.codefences-test.js'].trim()).to.equal([
+				'QUnit.module(\'Markdown Codefences | a.md\');',
+				'QUnit.test(\'fenced code should work\', function(assert) {',
+				'	assert.expect(0);',
+				'	bar',
+				'});'
+			].join('\n'));
+		});
+	});
 });
 
-// function compare
