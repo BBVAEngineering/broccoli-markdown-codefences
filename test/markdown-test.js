@@ -7,7 +7,7 @@ const Markdown = require('..');
 const createBuilder = testHelpers.createBuilder;
 const createTempDir = testHelpers.createTempDir;
 
-describe('broccoli-markdown-test', () => {
+describe('broccoli-markdown-codefences', () => {
 	let input, output;
 
 	beforeEach(async () => {
