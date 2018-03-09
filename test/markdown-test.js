@@ -280,5 +280,21 @@ describe('broccoli-markdown-codefences', () => {
 			].join('\n'));
 		});
 	});
+
+	describe('inline blocks', () => {
+		it('does not generates tests from inline code', async () => {
+			input.write({
+				'a.md': 'Foo `bar`.'
+			});
+
+			output = createBuilder(Markdown(input.path(), { testGenerator: 'qunit' }));
+
+			await output.build();
+
+			const result = output.read();
+
+			expect(result['a.codefences-test.js'].trim()).to.be.empty;
+		});
+	});
 });
 

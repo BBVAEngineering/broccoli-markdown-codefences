@@ -9,5 +9,8 @@ module.exports = {
 	},
 	env: {
 		node: true
+	},
+	rules: {
+		'no-unused-expressions': 0
 	}
 };
