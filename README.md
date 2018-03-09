@@ -79,7 +79,7 @@ const outputNode = MarkdownTest.create(inputNode, options);
 
   - `extensions` {Array}: File extensions to lint.
 
-    Default: `['md']`
+    Default: [markdown-extensions](https://github.com/sindresorhus/markdown-extensions/blob/master/markdown-extensions.json).
 
 ## Contribute
 

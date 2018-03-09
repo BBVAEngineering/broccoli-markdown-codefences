@@ -30,6 +30,7 @@
     "broccoli-persistent-filter": "^1.4.3",
     "jsesc": "^2.5.1",
     "json-stable-stringify": "^1.0.1",
+    "markdown-extensions": "^1.1.0",
     "markdown-it": "^8.4.1",
     "md5-hex": "^2.0.0"
   },
