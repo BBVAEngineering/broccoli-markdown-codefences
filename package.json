@@ -7,6 +7,14 @@
     "lib": "lib",
     "test": "test"
   },
+  "homepage": "https://github.com/BBVAEngineering/broccoli-markdown-codefences",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BBVAEngineering/broccoli-markdown-codefences"
+  },
+  "bugs": {
+    "url": "https://github.com/BBVAEngineering/broccoli-markdown-codefences/issues"
+  },
   "scripts": {
     "lint": "eslint .",
     "test": "mocha test/*test.js "
@@ -24,7 +32,7 @@
   "engines": {
     "node": ">=8.9.4"
   },
-  "author": "Adrián González Rus",
+  "author": "BBVAEngineering",
   "license": "MIT",
   "dependencies": {
     "broccoli-persistent-filter": "^1.4.3",
