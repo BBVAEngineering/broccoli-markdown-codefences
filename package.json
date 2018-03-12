@@ -1,6 +1,6 @@
 {
   "name": "broccoli-markdown-codefences",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Broccoli filter that test markdown codefences",
   "main": "lib/index.js",
   "directories": {
