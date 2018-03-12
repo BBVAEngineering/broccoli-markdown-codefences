@@ -64,14 +64,12 @@ describe('broccoli-markdown-codefences', () => {
 				'});',
 				'QUnit.test(\'fenced code should work\', function(assert) {',
 				'	assert.expect(0);',
-				'	const error = new DOMParser().parseFromString(\'<p>foo</p>\').querySelector(\'parsererror\');',
+				'	const error = new DOMParser().parseFromString(\'<p>foo</p>\', \'text/xml\').querySelector(\'parsererror\');',
 				'if (error) throw new Error(\'invalid html\');',
 				'});',
 				'QUnit.test(\'fenced code should work\', function(assert) {',
 				'	assert.expect(0);',
-				'	JSON.parse(\'{',
-				'	"foo": "bar"',
-				'}\');',
+				'	JSON.parse(\'{"foo": "bar"}\');',
 				'});'
 			].join('\n'));
 		});
@@ -122,13 +120,11 @@ describe('broccoli-markdown-codefences', () => {
 				'		var a = \'foo\';',
 				'	});',
 				'	it(\'fenced code should work\', function() {',
-				'		const error = new DOMParser().parseFromString(\'<p>foo</p>\').querySelector(\'parsererror\');',
+				'		const error = new DOMParser().parseFromString(\'<p>foo</p>\', \'text/xml\').querySelector(\'parsererror\');',
 				'if (error) throw new Error(\'invalid html\');',
 				'	});',
 				'	it(\'fenced code should work\', function() {',
-				'		JSON.parse(\'{',
-				'	"foo": "bar"',
-				'}\');',
+				'		JSON.parse(\'{"foo": "bar"}\');',
 				'	});',
 				'});'
 			].join('\n'));
