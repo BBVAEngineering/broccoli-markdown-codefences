@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # broccoli-markdown-codefences
 
 [![Build Status](https://travis-ci.org/BBVAEngineering/broccoli-markdown-codefences.svg?branch=master)](https://travis-ci.org/BBVAEngineering/broccoli-markdown-codefences)
